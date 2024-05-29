@@ -23,8 +23,8 @@ export function CategoryPills({
   useEffect(() => {
     if (containerRef.current == null) return;
 
-    const observer = new ResizeObserver((entries) => {
-      const container = entries[0]?.target;
+    const observer = new ResizeObserver(() => {
+      const container = containerRef.current; /*entries[0]?.target; possible*/
       if (container == null) return;
       setIsLeftVisible(translate > 0);
       setIsRightVisible(
