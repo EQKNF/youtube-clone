@@ -2,7 +2,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "./Button";
 import { useEffect, useRef, useState } from "react";
 
-type CategoryPillsProps = {
+type CategoryPillProps = {
   categories: string[];
   selectedCategory: string;
   onSelect: (category: string) => void;
@@ -14,7 +14,7 @@ export function CategoryPills({
   categories,
   selectedCategory,
   onSelect,
-}: CategoryPillsProps) {
+}: CategoryPillProps) {
   const [translate, setTranslate] = useState(0);
   const [isLeftVisible, setIsLeftVisible] = useState(false);
   const [isRightVisible, setIsRightVisible] = useState(false);
@@ -23,9 +23,10 @@ export function CategoryPills({
   useEffect(() => {
     if (containerRef.current == null) return;
 
-    const observer = new ResizeObserver(() => {
-      const container = containerRef.current; /*entries[0]?.target; possible*/
+    const observer = new ResizeObserver((entries) => {
+      const container = entries[0]?.target;
       if (container == null) return;
+
       setIsLeftVisible(translate > 0);
       setIsRightVisible(
         translate + container.clientWidth < container.scrollWidth
@@ -57,10 +58,7 @@ export function CategoryPills({
         ))}
       </div>
       {isLeftVisible && (
-        <div
-          className="absolute left-0 top-1/2 -translate-y-1/2 bg-gradient-to-r from-white from-50% to-transparent w-24
-      h-full"
-        >
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 bg-gradient-to-r from-white from-50% to-transparent w-24 h-full">
           <Button
             variant="ghost"
             size="icon"
@@ -78,10 +76,7 @@ export function CategoryPills({
         </div>
       )}
       {isRightVisible && (
-        <div
-          className="absolute right-0 top-1/2 -translate-y-1/2 bg-gradient-to-l from-white from-50% to-transparent w-24
-      h-full flex justify-end"
-        >
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 bg-gradient-to-l from-white from-50% to-transparent w-24 h-full flex justify-end">
           <Button
             variant="ghost"
             size="icon"
