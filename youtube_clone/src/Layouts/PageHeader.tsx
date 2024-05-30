@@ -88,7 +88,7 @@ export function PageHeaderFirstSection({
       <Button onClick={toggle} variant="ghost" size="icon">
         <Menu />
       </Button>
-      <a href="/" className="relative items-center content-center flex">
+      <a href="/" className="flex">
         <img src={logo} className="h-6" />
         <h1 className="font-semibold ">MeTube</h1>
       </a>
